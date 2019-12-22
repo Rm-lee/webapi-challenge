@@ -33,4 +33,26 @@ router.post('/', (req,res) => {
         })
     })
 })
+
+router.put('/:id',(req,res) => {
+Projs.update(req.params.id,req.body)
+.then(projs => {
+    if (projs) {
+        res.status(200).json(projs)
+    }
+    else {
+        res.status(404).json({
+            message: "Project Not found"
+        })
+
+    }
+    
+})
+.catch(err => {
+    console.log(err)
+    res.status(500).json({
+        message: "There was an error Updating Project"
+    })
+})
+})
 module.exports = router
