@@ -55,4 +55,15 @@ Projs.update(req.params.id,req.body)
     })
 })
 })
+
+router.delete('/:id', (req,res) => {
+    Projs.remove(req.params.id)
+    .then(del => {
+        res.status(200).json(del)
+    })
+    .catch(err => {
+        console.log(err)
+        res.status(500).json({message: "and error occured while trying to delete"})
+    })
+})
 module.exports = router
