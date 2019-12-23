@@ -1,7 +1,7 @@
 const express = require('express')
 
 const Projs = require('./projectModel.js')
-const actions = require('./actionModel.js')
+const Actions = require('./actionModel.js')
 
 const router = express.Router()
 
@@ -9,6 +9,21 @@ router.get('/', (req,res) => {
     console.log(req.query)
 
     Projs.get(req.query.id)
+    .then(projs => {
+        res.status(200).json(projs)
+    })
+    .catch(err => {
+        console.log(err)
+        res.status(500).json({
+            message: "There was an error retrieving projects"
+        })
+    })
+})
+
+router.get('/', (req,res) => {
+    console.log(req.query)
+
+    Projs.get()
     .then(projs => {
         res.status(200).json(projs)
     })
@@ -66,4 +81,18 @@ router.delete('/:id', (req,res) => {
         res.status(500).json({message: "and error occured while trying to delete"})
     })
 })
+
+router.get('/actions', (req,res) => {
+    Actions.get()
+    .then(acts => {
+        res.status(200).json(acts)
+    })
+    .catch(err => {
+        console.log(err)
+        res.status(500).json({
+            message:"there was an error getting actions"
+        })
+    })
+})
+
 module.exports = router
