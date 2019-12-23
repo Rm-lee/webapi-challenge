@@ -81,7 +81,7 @@ router.delete('/:id', (req,res) => {
         res.status(500).json({message: "and error occured while trying to delete"})
     })
 })
-
+//actions endpoints
 router.get('/actions', (req,res) => {
     Actions.get()
     .then(acts => {
@@ -111,5 +111,17 @@ router.post('/actions',(req,res) => {
         message: "projectId does not exist"
     })
 }
+})
+
+router.delete('/actions/:id', (req,res) => {
+    Actions.remove(req.params.id)
+    .then(acts => {
+        res.status(200).json(acts)
+
+    })
+    .catch(err => {
+        console.log(err)
+        res.status(500).json({message:"could not delete action"})
+    })
 })
 module.exports = router
