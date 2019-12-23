@@ -40,14 +40,23 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ] Mention two parts of Express that you learned about this week.
 
+Routers and Convienence Helpers
+
 - [ ] Describe Middleware?
+
+Middleware are functions we can use to hijack the flow of data so we can manipulate data before sending it on through.
 
 - [ ] Describe a Resource?
 
+A resource is a data set
+
 - [ ] What can the API return to help clients know if a request was successful?
+
+A response.
 
 - [ ] How can we partition our application into sub-applications?
 
+We can divide our server into routers to handle certain endpoints to help with modularity.
 ## Minimum Viable Product
 
 - [ ] Configure an _npm script_ named _"server"_ that will execute your code using _nodemon_. Make _nodemon_ be a development time dependency only, it shouldn't be deployed to production.
