@@ -124,4 +124,16 @@ router.delete('/actions/:id', (req,res) => {
         res.status(500).json({message:"could not delete action"})
     })
 })
+
+router.put('/actions/:id', (req,res) => {
+    Actions.update(req.params.id,req.body)
+    .then(acts => {
+        res.status(200).json(acts)
+
+    })
+    .catch(err => {
+        console.log(err)
+        res.status(500).json({message:"error occurred while updating action"})
+    })
+})
 module.exports = router
