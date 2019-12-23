@@ -94,5 +94,22 @@ router.get('/actions', (req,res) => {
         })
     })
 })
+router.post('/actions',(req,res) => {
+    console.log(req.body.project_id)
+    if(Projs.get(req.body.project_id)){
 
+    Actions.insert(req.body)
+    .then(acts => {
+        res.status(201).json(acts)
+    })
+    .catch(err => {
+        console.log(err)
+        res.status(500).json({message: "there was an error creating the action"})
+    })
+}else{
+    res.status(404).json({
+        message: "projectId does not exist"
+    })
+}
+})
 module.exports = router
